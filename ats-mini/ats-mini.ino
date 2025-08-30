@@ -79,7 +79,7 @@ int8_t scrollDirection = 1;             // Menu scroll direction
 uint32_t background_timer = millis();   // Background screen refresh timer.
 uint32_t tuning_timer = millis();       // Tuning hold off timer.
 bool tuning_flag = false;               // Flag to indicate tuning
-uint8_t tuneHoldOff = 90;               // Timer to hold off display whilst tuning
+uint8_t tuneHoldOff = 0;                // Timer to hold off display whilst tuning
 
 //
 // Current parameters
@@ -173,7 +173,7 @@ void setup()
 
   // Check for SI4732 connected on I2C interface
   // If the SI4732 is not detected, then halt with no further processing
-  rx.setI2CFastModeCustom(100000);
+  rx.setI2CFastModeCustom(800000UL);
 
   // Looks for the I2C bus address and set it.  Returns 0 if error
   int16_t si4735Addr = rx.getDeviceI2CAddress(RESET_PIN);

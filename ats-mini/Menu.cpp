@@ -22,6 +22,7 @@
 int bandIdx = 0;
 
 // Band limits are expanded to align with the nearest tuning scale mark
+// Do not forget to update the bands table in the manual.md
 Band bands[] =
 {
   {"VHF",  FM_BAND_TYPE, FM,   6400, 10800, 10390, 2, 0, 0},
@@ -60,7 +61,8 @@ Band bands[] =
   {"12M",  SW_BAND_TYPE, USB, 24800, 25000, 24940, 5, 4, 0},
   {"10M",  SW_BAND_TYPE, USB, 28000, 29700, 28500, 5, 4, 0},
   // https://www.hfunderground.com/wiki/CB
-  {"CB",   SW_BAND_TYPE, AM,  25000, 30000, 27135, 0, 4, 0},
+  // Also see MIN_CB_FREQUENCY and MAX_CB_FREQUENCY
+  {"CB",   SW_BAND_TYPE, AM,  25000, 28000, 27135, 0, 4, 0},
 };
 
 int getTotalBands() { return(ITEM_COUNT(bands)); }
@@ -1373,7 +1375,7 @@ static void drawMemory(int x, int y, int sx)
     else if(memories[j].mode==FM)
       sprintf(buf, "%3.2f %s", memories[j].freq / 1000000.0, bandModeDesc[memories[j].mode]);
     else
-      sprintf(buf, "%5d %s", memories[j].freq / 1000, bandModeDesc[memories[j].mode]);
+      sprintf(buf, "%5lu %s", memories[j].freq / 1000, bandModeDesc[memories[j].mode]);
 
     if(i==0) {
       drawZoomedMenu(text);
